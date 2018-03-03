@@ -1,1 +1,26 @@
 <h2>search</h2>
+
+<div>
+<input ng-model="sc.search.keyword"type="text" name="" value="" placeholder="keyword">
+<select ng-model="sc.search.catergory">
+  <option value="" selected disabled hidden>Pick Catergory</option>
+  <option value="films">Films</option>
+  <option value="people">People</option>
+  <option value="planets">Planets</option>
+  <option value="species">Species</option>
+  <option value="starships">Starships</option>
+  <option value="vehicles">Vehicles</option>
+</select>
+<p>{{sc.search.keyword}} {{sc.search.catergory}}</p>
+<button ng-click="sc.startSearch(sc.search.keyword, sc.search.catergory)">search</button>
+
+</div>
+<div>
+<ul>
+  <li ng-repeat="result in sc.search.result.results">{{result.name}}</li>
+</ul>
+<button ng-show="sc.search.result.previous"ng-click="sc.pageMove(sc.search.result.previous)">Previous</button>
+<button ng-show="sc.search.result.next"ng-click="sc.pageMove(sc.search.result.next)">Next</button>
+
+
+</div>

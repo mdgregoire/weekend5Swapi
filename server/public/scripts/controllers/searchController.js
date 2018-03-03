@@ -2,4 +2,7 @@ const searchController = app.controller('SearchController', ['SwapiService', fun
     let self = this;
 console.log('searchcontroller created');
 
+self.search = SwapiService.search;
+self.startSearch = SwapiService.startSearch;
+self.pageMove = SwapiService.pageMove;
 }])//end serchController
