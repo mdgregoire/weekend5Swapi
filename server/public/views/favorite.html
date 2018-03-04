@@ -1,12 +1,16 @@
 <h2>favorite</h2>
 
+<img width = "400px" ng-src="{{fc.searchOut.image.url}}"/>
 
 <div>
 <ul>
   <li ng-repeat="result in fc.Favorites.list">
     <p ng-show="result.name">Name: {{result.name}}</p>
+    <p ng-show="result.birth_year">Born: {{result.birth_year}}</p>
     <p ng-show="result.homeworld">HomeWorld: {{result.homeworld}}</p>
+    <div ng-hide="result.title">
     <p ng-show="result.species">Species: {{result.species}}</p>
+  </div>
     <p ng-show="result.title">Title: {{result.title}}</p>
     <p ng-show="result.opening_crawl">Opening: {{result.opening_crawl}}</p>
     <p ng-show="result.release_date">Release Date: {{result.release_date}}</p>
@@ -15,6 +19,10 @@
     <p ng-show="result.terrain">Terrain: {{result.terrain}}</p>
     <p ng-show="result.classification">Classification: {{result.classification}}</p>
     <p ng-show="result.skin_colors">Skin Color: {{result.skin_colors}}</p>
+    <p ng-show="result.skin_color">Skin Color: {{result.skin_color}}</p>
+    <p ng-show="result.hair_colors">Hair Color: {{result.hair_colors}}</p>
+    <p ng-show="result.hair_color">Hair Color: {{result.hair_color}}</p>
+
     <p ng-show="result.average_height">Average Height: {{result.average_height}}</p>
     <p ng-show="result.average_lifespan">Average Lifespan: {{result.average_lifespan}}</p>
     <p ng-show="result.model">Model: {{result.model}}</p>
@@ -26,11 +34,10 @@
     <p ng-show="result.max_atmosphering_speed">Max Atmosphere Speed: {{result.max_atmosphering_speed}}</p>
     <p ng-show="result.manufacturer">Manufacturer: {{result.manufacturer}}</p>
 
-    <p ng-show="result.films">Films: <ul>
-      <li ng-repeat="film in result.films"><p>{{film}}</p></li>
-        </ul>
-    </p>
     <button ng-click="fc.deleteFavorite(result._id)">Delete</button>
+    <button ng-click="fc.getPicture(result.name, result.title)">Picture</button>
+
+
     <br>
 
   </li>

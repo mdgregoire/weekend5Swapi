@@ -2,8 +2,16 @@ app.service('SwapiService', ['$http', function($http){
   console.log('SwapiService created')
   let self = this;
 
+  const apiKey = 'KsGqHnc5Rp9pURi4iIEBX4ILYTzvv39L';
+  const giphyURL = 'https://api.giphy.com/v1/gifs';
+
   self.search = {};
   self.Favorites = {};
+  self.searchOut = {};
+  self.favArray = [];
+
+  let index = 0;
+
 
   self.startSearch = function(keyword, catergory){
       console.log('in start search', keyword, catergory);
@@ -85,5 +93,41 @@ self.deleteFavorite = function(id){
   })
 }
 //end deleteFavorite
+
+self.getPicture = function(name, title){
+  console.log('in get picture', name, title);
+let gsearch;
+  if(title){
+    gsearch = title;
+    console.log(gsearch);
+  }else{
+    gsearch = name;
+    console.log(gsearch);
+  }
+    console.log(gsearch, 'gsearch');
+    $http({
+      method: 'GET',
+      url: `${giphyURL}/search?q=${gsearch}&api_key=${apiKey}`
+    })
+    .then(function(response){
+      console.log('success in search', response);
+
+      self.searchOut.image = response.data.data[2].images.original;
+      console.log(self.searchOut);
+      title ='';
+      name = '';
+      gsearch = '';
+    })
+    .catch(function(error){
+      console.log('error in search', error);
+    })
+
+
+
+
+}
+//end getPicture
+
+
 
 }])//end swapi service

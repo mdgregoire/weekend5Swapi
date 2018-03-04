@@ -6,9 +6,10 @@ console.log('inswapi router');
 
 const FavoriteSchema = new mongoose.Schema(
   {
-    name: {type: String, required: true},
+    name: {type: String},
     homeworld: {type: String},
     species: {type: String},
+    films: {type: String},
     title: {type: String},
     opening_crawl: {type: String},
     release_date: {type: String},
@@ -16,7 +17,13 @@ const FavoriteSchema = new mongoose.Schema(
     climate: {type: String},
     terrain: {type: String},
     classification: {type: String},
+    birth_year: {type: String},
     skin_colors: {type: String},
+    skin_color: {type: String},
+    hair_colors: {type: String},
+    hair_color: {type: String},
+    hair_color: {type: String},
+    eye_color: {type: String},
     average_height: {type: String},
     average_lifespan: {type: String},
     model: {type: String},
@@ -58,7 +65,7 @@ router.get('/', (request, response) => {
 });
 
 router.delete('/:id', (request, response) => {
-  let id = request.params.id; 
+  let id = request.params.id;
   Favorite.findByIdAndRemove(
     {"_id": id},
     (error, deletedFavorite) => {
