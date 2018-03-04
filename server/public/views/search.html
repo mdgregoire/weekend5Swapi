@@ -17,8 +17,37 @@
 </div>
 <div>
 <ul>
-  <li ng-repeat="result in sc.search.result.results">{{result.name}}</li>
+  <li ng-repeat="result in sc.search.result.results">
+    <p ng-show="result.name">Name: {{result.name}}</p>
+    <p ng-show="result.homeworld">HomeWorld: {{result.homeworld}}</p>
+    <p ng-show="result.species[0]">Species: {{result.species[0]}}</p>
+    <p ng-show="result.title">Title: {{result.title}}</p>
+    <p ng-show="result.opening_crawl">Opening: {{result.opening_crawl}}</p>
+    <p ng-show="result.release_date">Release Date: {{result.release_date}}</p>
+    <p ng-show="result.director">Director: {{result.director}}</p>
+    <p ng-show="result.climate">Climate: {{result.climate}}</p>
+    <p ng-show="result.terrain">Terrain: {{result.terrain}}</p>
+    <p ng-show="result.classification">Classification: {{result.classification}}</p>
+    <p ng-show="result.skin_colors">Skin Color: {{result.skin_colors}}</p>
+    <p ng-show="result.average_height">Average Height: {{result.average_height}}</p>
+    <p ng-show="result.average_lifespan">Average Lifespan: {{result.average_lifespan}}</p>
+    <p ng-show="result.model">Model: {{result.model}}</p>
+    <p ng-show="result.crew">Crew: {{result.crew}}</p>
+    <p ng-show="result.passengers">Passengers: {{result.passengers}}</p>
+    <p ng-show="result.length">Length: {{result.length}}</p>
+    <p ng-show="result.cargo_capacity">Cargo Capacity: {{result.cargo_capacity}}</p>
+    <p ng-show="result.hyperdrive_rating">Hyperdrive Rating: {{result.hyperdrive_rating}}</p>
+    <p ng-show="result.max_atmosphering_speed">Max Atmosphere Speed: {{result.max_atmosphering_speed}}</p>
+    <p ng-show="result.manufacturer">Manufacturer: {{result.manufacturer}}</p>
+
+    <p ng-show="result.films">Films: <ul>
+      <li ng-repeat="film in result.films"><p>{{film}}</p></li>
+        </ul>
+    </p>
+    <button ng-click="sc.addFavorite(result)">Add To Favorites</button>
+  </li>
 </ul>
+
 <button ng-show="sc.search.result.previous"ng-click="sc.pageMove(sc.search.result.previous)">Previous</button>
 <button ng-show="sc.search.result.next"ng-click="sc.pageMove(sc.search.result.next)">Next</button>
 
