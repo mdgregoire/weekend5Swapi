@@ -22,6 +22,7 @@ app.service('SwapiService', ['$http', function($http){
     .then(function(response){
       console.log(response.data, 'response from get');
       self.search.result = response.data;
+      self.clearInput();
     })
     .catch(function(error){
       console.log('error in search', error);
@@ -121,13 +122,14 @@ let gsearch;
     .catch(function(error){
       console.log('error in search', error);
     })
-
-
-
-
 }
 //end getPicture
 
+self.clearInput = function(){
+  self.search.keyword = '';
+  self.search.catergory = '';
+}
+//end clearInput
 
 
 }])//end swapi service

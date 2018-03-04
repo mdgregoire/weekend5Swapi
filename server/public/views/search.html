@@ -1,23 +1,47 @@
-<h2>search</h2>
 
-<div>
-<input ng-model="sc.search.keyword"type="text" name="" value="" placeholder="keyword">
-<select ng-model="sc.search.catergory">
-  <option value="" selected disabled hidden>Pick Catergory</option>
-  <option value="films">Films</option>
-  <option value="people">People</option>
-  <option value="planets">Planets</option>
-  <option value="species">Species</option>
-  <option value="starships">Starships</option>
-  <option value="vehicles">Vehicles</option>
-</select>
-<p>{{sc.search.keyword}} {{sc.search.catergory}}</p>
-<button ng-click="sc.startSearch(sc.search.keyword, sc.search.catergory)">search</button>
+<md-card flex-offset="33" flex>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Star Wars API Search</span>
+      <span class="md-subhead">What are you looking for?</span>
+    </md-card-title-text>
+  </md-card-title>
 
-</div>
-<div>
-<ul>
-  <li ng-repeat="result in sc.search.result.results">
+  <md-card-content flex="50">
+    <div layout="row">
+      <md-input-container>
+        <label>Keyword</label>
+        <input ng-model="sc.search.keyword">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Catergory</label>
+        <md-select ng-model="sc.search.catergory">
+          <md-option><em>None</em></md-option>
+          <md-option value="films">Films</md-option>
+          <md-option value="people">People</md-option>
+          <md-option value="planets">Planets</md-option>
+          <md-option value="species">Species</md-option>
+          <md-option value="starships">Starships</md-option>
+          <md-option value="vehicles">Vehicles</md-option>
+        </md-select>
+        <md-button class="md-primary md-raised"ng-click="sc.startSearch(sc.search.keyword, sc.search.catergory)">search</md-button>
+
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>
+
+
+
+
+
+
+
+
+<div layout="row" layout-xs="column" layout-wrap>
+<md-card flex="30" ng-repeat="result in sc.search.result.results">
+  <md-card-content>
     <p ng-show="result.title">Title: {{result.title}}</p>
     <p ng-show="result.name">Name: {{result.name}}</p>
     <p ng-show="result.birth_year">Born: {{result.birth_year}}</p>
@@ -44,22 +68,23 @@
     <p ng-show="result.hyperdrive_rating">Hyperdrive Rating: {{result.hyperdrive_rating}}</p>
     <p ng-show="result.max_atmosphering_speed">Max Atmosphere Speed: {{result.max_atmosphering_speed}}</p>
     <p ng-show="result.manufacturer">Manufacturer: {{result.manufacturer}}</p>
-    <p ng-hide="result.species[1]">Species: <ul ng-hide="result.species[1]">
+    <!-- <p ng-hide="result.species[2]">Species: <ul ng-hide="result.species[1]">
       <li ng-repeat="species in result.species"><p>{{species}}</p></li>
         </ul>
-    </p>
+    </p> -->
     <div ng-show="result.films">Films: <ul>
       <li ng-repeat="film in result.films">
         {{film}}
       </li>
         </ul>
     </div>
-    <button ng-click="sc.addFavorite(result)">Add To Favorites</button>
-  </li>
-</ul>
-
-<button ng-show="sc.search.result.previous"ng-click="sc.pageMove(sc.search.result.previous)">Previous</button>
-<button ng-show="sc.search.result.next"ng-click="sc.pageMove(sc.search.result.next)">Next</button>
-
-
+  </md-card-content>
+    <md-card-actions layout="row" layout-align="start center">
+      <md-button  class="md-primary md-raised" ng-click="sc.addFavorite(result)">Add To Favorites</md-button>
+    </md-card-actions>
+</md-card>
+</div>
+<div flex="10">
+<md-button  ng-show="sc.search.result.previous"ng-click="sc.pageMove(sc.search.result.previous)">Previous</md-button>
+<md-button  ng-show="sc.search.result.next"ng-click="sc.pageMove(sc.search.result.next)">Next</md-button>
 </div>

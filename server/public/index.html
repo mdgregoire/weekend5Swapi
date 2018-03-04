@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app = "myApp">
+<html ng-app = "myApp" layout-margin>
   <head>
     <meta charset="utf-8">
     <title>SWAPI</title>
@@ -13,17 +13,25 @@
     <script src="scripts/controllers/searchController.js"></script>
     <script src="scripts/controllers/favoriteController.js"></script>
     <script src="scripts/services/swapiService.js"></script>
+    <link rel="stylesheet" href="vendors/angular-material/angular-material.css">
     <link rel="stylesheet" href="/css/master.css">
+    <link href="https://fonts.googleapis.com/css?family=Krona+One" rel="stylesheet">
 
 
   </head>
   <body>
-    <h1>swapi</h1>
-    <nav>
-      <a class="nav-link" href="/#!">Search</a>
-      <a class="nav-link" href="/#!favorite">Favorite</a>
+    <h1>SWAPI</h1>
 
+    <md-toolbar>
+    <nav>
+      <md-button href="/#!">Search</md-button>
+      <md-button href="/#!favorite">Favorites</md-button>
+    </md-toobar>
     </nav>
-    <div ng-view></div>
+    <md-content flex id="content" class="md-padding">
+      <div layout="column" ng-view></div>
+    </md-content>
+
+
   </body>
 </html>
